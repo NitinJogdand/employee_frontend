@@ -1,0 +1,36 @@
+
+<div>
+    <div style="margin-bottom: 15px;">
+        <button>ADD</button>
+        <button (click)="onShowAll()">Show All</button>
+        <button (click)="hidAll()">Hide All</button>
+    </div>
+    <div *ngIf="showTable">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>EmployeeName</th>
+                    <th>EmployeeAge</th>
+                    <th>EmployeeMobailNumber</th>
+                    <th>EmployeeSalary</th>
+                    <th>EmployeeCompany</th>
+                    <th>EmployeeLivingCity</th>
+                    <th>EmployeeNationality</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of employees">
+                    <td>{{data.id}}</td>
+                    <td>{{data.employeeName}}</td>
+                    <td>{{data.employeeAge}}</td>
+                    <td>{{data.employeeMobailNumber}}</td>
+                    <td>{{data.employeeSalary}}</td>
+                    <td>{{data.employeeCompany}}</td>
+                    <td>{{data.employeeLivingCity}}</td>
+                    <td>{{data.employeeNationality}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
