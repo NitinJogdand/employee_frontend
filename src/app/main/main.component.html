@@ -1,29 +1,71 @@
-
-<h2>This is Employee Managment Project</h2>
-<h3>**********************************</h3>
-<div>
-    <div style="margin-bottom: 15px;">
-        <button>ADD</button>
-        <button (click)="onShowAll()">Show All</button>
-        <button (click)="hidAll()">Hide All</button>
+<div class="container">
+    <div style="margin-bottom: 25px;" class="mt-2">
+        <button class="btn ml-2" (click)="addRecordOption()">ADD</button>
+        <button class="btn ml-2" (click)="onShowAll()">Show All</button>
+        <button class="btn ml-2" (click)="hidAll()">Hide All</button>
     </div>
-    <div *ngIf="showTable">
-        <table border="1">
-            <thead>
+    <div *ngIf="addRecord">
+        <div style="width: 550px;">
+            <div style="display: flex; justify-content: space-around;margin-bottom: 5px;">
+                <div>
+                    <label class="mb-2" style="margin-right: 5px;" for="">Enter Name</label>
+                    <input class="form-control" type="text" [(ngModel)]="inputEmpolyee.employeeName" />
+                </div>
+                <div>
+                    <label class="mb-2" style="margin-right: 5px;" for="">Enter Age</label>
+                    <input class="form-control" type="number" [(ngModel)]="inputEmpolyee.employeeAge" />
+                </div>
+            </div>
+            <div style="display: flex;justify-content: space-around;margin-top: 5px;">
+                <div>
+                    <label class="mb-2" style="margin-right: 5px;" for="">Enter Mobail Number</label>
+                    <input class="form-control" type="number" [(ngModel)]="inputEmpolyee.employeeMobailNumber" />
+                </div>
+                <div>
+                    <label class="mb-2" style="margin-right: 5px;" for="">Enter Salary</label>
+                    <input class="form-control" type="number" [(ngModel)]="inputEmpolyee.employeeSalary" />
+                </div>
+            </div>
+           <div style="display: flex;justify-content: space-around;margin-bottom: 5px;">
+            <div>
+                <label class="mb-2" style="margin-right: 5px;" for="">Enter Company Name</label>
+                <input class="form-control" type="text" [(ngModel)]="inputEmpolyee.employeeCompany" />
+            </div>
+            <div>
+                <label class="mb-2" style="margin-right: 5px;" for="">Enter City</label>
+                <input class="form-control" type="text" [(ngModel)]="inputEmpolyee.employeeLivingCity" />
+            </div>
+           </div>
+            <div style="margin-left: 30px;">
+                <label class="mb-2" style="margin-right: 5px;" for="">Enter Nationality</label>
+                <input class="form-control" type="text" [(ngModel)]="inputEmpolyee.employeeNationality" />
+            </div>
+           <div style="margin-left: 30px;margin-top: 20px;">
+            <button class="btn btn-success"(click)="savedata()">Save</button>
+           </div>
+           <div *ngIf="forUpdate" style="margin-left: 30px;margin-top: 20px;">
+            <button class="btn btn-warning"(click)="updateRecordSave()">Update</button>
+           </div>
+        </div>
+    </div>
+    <div *ngIf="showTable" style="width: 90%;">
+        <table class="table table-bordered">
+            <thead >
                 <tr>
-                    <th>ID</th>
                     <th>EmployeeName</th>
                     <th>EmployeeAge</th>
-                    <th>EmployeeMobailNumber</th>
+                    <th>EmployeeMob.</th>
                     <th>EmployeeSalary</th>
                     <th>EmployeeCompany</th>
-                    <th>EmployeeLivingCity</th>
-                    <th>EmployeeNationality</th>
+                    <th>EmployeeLCity</th>
+                    <th>EmployeeNat.</th>
+                    <th>Delete</th>
+                    <th>Update</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let data of employees">
-                    <td>{{data.id}}</td>
+                 
                     <td>{{data.employeeName}}</td>
                     <td>{{data.employeeAge}}</td>
                     <td>{{data.employeeMobailNumber}}</td>
@@ -31,6 +73,8 @@
                     <td>{{data.employeeCompany}}</td>
                     <td>{{data.employeeLivingCity}}</td>
                     <td>{{data.employeeNationality}}</td>
+                    <td><button class="btn" (click)="deleteRecord(data)">delete</button></td>
+                    <td><button class="btn" (click)="updateRecordClick(data)">Update</button></td>
                 </tr>
             </tbody>
         </table>
