@@ -17,11 +17,11 @@ export class EmployeeService {
   }
 
   deleteRecord(id:number){
-    return this.http.delete(`http://localhost:9090/employee/deleteEmployee/${id}`)
+    return this.http.delete(`http://localhost:8081/employee/employee/${id}`)
   }
 
   updateEmployee(employee:any){
-    return this.http.put(`http://localhost:9090/employee/update`,employee)
+    return this.http.put(`http://localhost:8081/employee/employee/update`,employee)
   }
 }
 export class InputEmployee{
