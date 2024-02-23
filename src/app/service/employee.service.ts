@@ -12,20 +12,20 @@ export class EmployeeService {
   constructor(private http:HttpClient) { }
 
   getAllEmployeeList(){
-    return this.http.get<any>(`${this.developmentPath}employee/getAll`);
+    return this.http.get<any>(`${this.tomcatPath}employee/getAll`);
   }
 
   saveEmployee(inputEmployee:InputEmployee){
-    return this.http.post(`${this.developmentPath}employee/save`,inputEmployee)
+    return this.http.post(`${this.tomcatPath}employee/save`,inputEmployee)
   }
 
   deleteRecord(id:number){
-    return this.http.delete(`${this.developmentPath}employee/deleteEmployee/${id}`)
+    return this.http.delete(`${this.tomcatPath}employee/deleteEmployee/${id}`)
   }
 
   updateEmployee(employee:any){
     console.log("In API")
-    return this.http.put(`${this.developmentPath}employee/update`,employee)
+    return this.http.put(`${this.tomcatPath}employee/update`,employee)
   }
 }
 export class InputEmployee{
