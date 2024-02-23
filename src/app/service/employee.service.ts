@@ -9,11 +9,11 @@ export class EmployeeService {
   constructor(private http:HttpClient) { }
 
   getAllEmployeeList(){
-    return this.http.get<any>('http://localhost:9090/employee/getAll');
+    return this.http.get<any>('http://localhost:8081/employee/employee/getAll');
   }
 
   saveEmployee(inputEmployee:InputEmployee){
-    return this.http.post('http://localhost:9090/employee/save',inputEmployee)
+    return this.http.post('http://localhost:8081/employee/employee/save',inputEmployee)
   }
 
   deleteRecord(id:number){
