@@ -6,25 +6,40 @@ import { Injectable } from '@angular/core';
 })
 export class EmployeeService {
 
+   tomcatPath:string = 'http://localhost:8081/employee/';
+   developmentPath:string = 'http://localhost:9090/'
+
   constructor(private http:HttpClient) { }
 
   getAllEmployeeList(){
-    return this.http.get<any>('http://localhost:8081/employee/employee/getAll');
+    return this.http.get<any>(`${this.developmentPath}employee/getAll`);
   }
 
   saveEmployee(inputEmployee:InputEmployee){
-    return this.http.post('http://localhost:8081/employee/employee/save',inputEmployee)
+    return this.http.post(`${this.developmentPath}employee/save`,inputEmployee)
   }
 
   deleteRecord(id:number){
-    return this.http.delete(`http://localhost:8081/employee/employee/${id}`)
+    return this.http.delete(`${this.developmentPath}employee/deleteEmployee/${id}`)
   }
 
   updateEmployee(employee:any){
-    return this.http.put(`http://localhost:8081/employee/employee/update`,employee)
+    console.log("In API")
+    return this.http.put(`${this.developmentPath}employee/update`,employee)
   }
 }
 export class InputEmployee{
+  employeeName:string='';
+  employeeAge:number=0;
+  employeeMobailNumber:number=0;
+  employeeSalary:number = 0;
+  employeeCompany:string='';
+  employeeLivingCity:string='';
+  employeeNationality:string=''
+}
+
+export class Employee{
+  id:number=0;
   employeeName:string='';
   employeeAge:number=0;
   employeeMobailNumber:number=0;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService, InputEmployee } from '../service/employee.service';
+import { Employee, EmployeeService, InputEmployee } from '../service/employee.service';
 
 @Component({
   selector: 'app-main',
@@ -42,18 +42,19 @@ export class MainComponent implements OnInit {
     this.inputEmpolyee = new InputEmployee();
     this.showTable = false
     this.addRecord = true
-   
-
-    
   }
 
   savedata(){
+
     console.log(this.inputEmpolyee)
-    this.employeeService.saveEmployee(this.inputEmpolyee).subscribe((data)=>{
+     this.employeeService.saveEmployee(this.inputEmpolyee).subscribe((data)=>{
       console.log(data)
+      
     },(error)=>{
       console.log(error)
+      this.onShowAll();
     })
+    
   }
 
   deleteRecord(deleteRecord:any){
@@ -61,18 +62,20 @@ export class MainComponent implements OnInit {
     let id = deleteRecord.id;
     this.employeeService.deleteRecord(id).subscribe((data)=>{
       console.log(data)
-      this.onShowAll();
+      
     },(error)=>{
       console.log(error)
+      this.onShowAll();
     })
     
   }
-
+ id:number = 0;
   updateRecordClick(data:any){
     this.showTable = false
     this.addRecord = false
     this.updateRecord = false
     this.forUpdate =true
+    this.id = data.id;
     this.inputEmpolyee.employeeName = data.employeeName;
     this.inputEmpolyee.employeeAge = data.employeeAge;
     this.inputEmpolyee.employeeMobailNumber = data.employeeMobailNumber;
@@ -80,12 +83,33 @@ export class MainComponent implements OnInit {
     this.inputEmpolyee.employeeCompany = data.employeeCompany;
     this.inputEmpolyee.employeeLivingCity = data.employeeLivingCity;
     this.inputEmpolyee.employeeNationality = data.employeeNationality;
-
     console.log(this.inputEmpolyee)
+    console.log("For Update")
+    console.log(data)
+    this.employeeService.updateEmployee(data).subscribe((result)=>{
+      console.log(result);
+    },(error)=>{
+      console.log(error)
+    })
   }
-
+  dataForUpdate:Employee = new Employee();
   updateRecordSave(){
-
+    console.log(this.inputEmpolyee)
+    this.dataForUpdate.id = this.id;
+    this.dataForUpdate.employeeName = this.inputEmpolyee.employeeName;
+    this.dataForUpdate.employeeAge = this.inputEmpolyee.employeeAge;
+    this.dataForUpdate.employeeMobailNumber = this.inputEmpolyee.employeeMobailNumber;
+    this.dataForUpdate.employeeSalary = this.inputEmpolyee.employeeSalary;
+    this.dataForUpdate.employeeCompany = this.inputEmpolyee.employeeCompany;
+    this.dataForUpdate.employeeLivingCity = this.inputEmpolyee.employeeLivingCity;
+    this.dataForUpdate.employeeNationality = this.inputEmpolyee.employeeNationality;
+    this.employeeService.updateEmployee(this.dataForUpdate).subscribe((result)=>{
+      console.log(result)
+      this.onShowAll();
+    },(error)=>{
+      console.log(error)
+    })
+   
   }
 
   hidAll(){
