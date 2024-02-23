@@ -33,6 +33,7 @@ export class MainComponent implements OnInit {
     this.showTable = true
     this.addRecord = false
     this.updateRecord = false
+    this.forUpdate = false
   }
 
   addRecordOption(){
@@ -56,20 +57,22 @@ export class MainComponent implements OnInit {
   }
 
   deleteRecord(deleteRecord:any){
+    this.onShowAll();
     let id = deleteRecord.id;
     this.employeeService.deleteRecord(id).subscribe((data)=>{
       console.log(data)
+      this.onShowAll();
     },(error)=>{
       console.log(error)
     })
+    
   }
 
   updateRecordClick(data:any){
     this.showTable = false
-    this.addRecord = true
+    this.addRecord = false
     this.updateRecord = false
     this.forUpdate =true
-    this.forUpdate = false
     this.inputEmpolyee.employeeName = data.employeeName;
     this.inputEmpolyee.employeeAge = data.employeeAge;
     this.inputEmpolyee.employeeMobailNumber = data.employeeMobailNumber;
@@ -88,6 +91,8 @@ export class MainComponent implements OnInit {
   hidAll(){
     this.showTable = false;
     this.employees = [];
+    this.forUpdate = false
+    this.addRecord=false
   }
 
 }

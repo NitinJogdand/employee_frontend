@@ -48,6 +48,48 @@
            </div>
         </div>
     </div>
+    <div *ngIf="forUpdate">
+        <div style="width: 550px;">
+            <div style="display: flex; justify-content: space-around;margin-bottom: 5px;">
+                <div>
+                    <label class="mb-2" style="margin-right: 5px;" for="">Enter Name</label>
+                    <input class="form-control" type="text" [(ngModel)]="inputEmpolyee.employeeName" />
+                </div>
+                <div>
+                    <label class="mb-2" style="margin-right: 5px;" for="">Enter Age</label>
+                    <input class="form-control" type="number" [(ngModel)]="inputEmpolyee.employeeAge" />
+                </div>
+            </div>
+            <div style="display: flex;justify-content: space-around;margin-top: 5px;">
+                <div>
+                    <label class="mb-2" style="margin-right: 5px;" for="">Enter Mobail Number</label>
+                    <input class="form-control" type="number" [(ngModel)]="inputEmpolyee.employeeMobailNumber" />
+                </div>
+                <div>
+                    <label class="mb-2" style="margin-right: 5px;" for="">Enter Salary</label>
+                    <input class="form-control" type="number" [(ngModel)]="inputEmpolyee.employeeSalary" />
+                </div>
+            </div>
+           <div style="display: flex;justify-content: space-around;margin-bottom: 5px;">
+            <div>
+                <label class="mb-2" style="margin-right: 5px;" for="">Enter Company Name</label>
+                <input class="form-control" type="text" [(ngModel)]="inputEmpolyee.employeeCompany" />
+            </div>
+            <div>
+                <label class="mb-2" style="margin-right: 5px;" for="">Enter City</label>
+                <input class="form-control" type="text" [(ngModel)]="inputEmpolyee.employeeLivingCity" />
+            </div>
+           </div>
+            <div style="margin-left: 30px;">
+                <label class="mb-2" style="margin-right: 5px;" for="">Enter Nationality</label>
+                <input class="form-control" type="text" [(ngModel)]="inputEmpolyee.employeeNationality" />
+            </div>
+          
+           <div style="margin-left: 30px;margin-top: 20px;">
+            <button class="btn btn-warning"(click)="updateRecordSave()">Update</button>
+           </div>
+        </div>
+    </div>
     <div *ngIf="showTable" style="width: 90%;">
         <table class="table table-bordered">
             <thead >
