@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee, EmployeeService, InputEmployee } from '../service/employee.service';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-main',
@@ -17,10 +18,18 @@ export class MainComponent implements OnInit {
   forUpdate:boolean = false
   showSave:boolean = true
   inputEmpolyee:InputEmployee = new InputEmployee();
+
+   data = from(fetch("http://localhost:8081/employee/employee/getAll"))
   
   constructor(private employeeService:EmployeeService) { }
 
   ngOnInit(): void {
+    this.data.subscribe((data)=>{
+      console.log("Data is Here..")
+      console.log(data);
+    },(error)=>{
+      console.log("ERROR...")
+    })
   }
 
   onShowAll(){
