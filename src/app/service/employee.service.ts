@@ -27,6 +27,27 @@ export class EmployeeService {
     console.log("In API")
     return this.http.put(`${this.tomcatPath}employee/update`,employee)
   }
+
+  getAllStudents(){
+   let s1:student = new student(1,"Nitin","Jogdand",23);
+   let s2:student = new student(2,"Vishal","Mane",21);
+   let s3:student = new student(1,"Pranav","Munde",24);
+   let s4:student = new student(2,"Rahul","Gaikwad",24);
+   let s5:student = new student(5,"Ganesh","Mote",20);
+   let s6:student = new student(6,"Virag","Londhe",25);
+   let s7:student = new student(7,"Pinki","Jadhav",25);
+   let s8:student = new student(8,"Sumit","Bhujbal",23);
+   let studentList:student[] = [];
+   studentList.push(s1);
+   studentList.push(s2);
+   studentList.push(s3);
+   studentList.push(s4);
+   studentList.push(s5);
+   studentList.push(s6);
+   studentList.push(s7);
+   studentList.push(s8);
+   return studentList;
+  }
 }
 export class InputEmployee{
   employeeName:string='';
@@ -47,4 +68,18 @@ export class Employee{
   employeeCompany:string='';
   employeeLivingCity:string='';
   employeeNationality:string=''
+}
+
+export class student{
+  id:number=0;
+  firstName:string='';
+  lastName:string='';
+  age:number = 0;
+
+  constructor(id:number,firstName:string,lastName:string,age:number){
+    this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+  }
 }

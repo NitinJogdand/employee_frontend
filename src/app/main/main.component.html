@@ -91,7 +91,7 @@
         </div>
     </div>
     <div *ngIf="showTable" style="width: 90%;">
-        <table class="table table-bordered">
+        <table class="table table-bordered" style="width: 80%;">
             <thead >
                 <tr>
                     <th>EmployeeName</th>
@@ -100,7 +100,7 @@
                     <th>EmployeeSalary</th>
                     <th>EmployeeCompany</th>
                     <th>EmployeeLCity</th>
-                    <th>EmployeeNat.</th>
+                    <th class="fit">EmployeeNat.</th>
                     <th>Delete.</th>
                     <th>Update</th>
                 </tr>
@@ -114,11 +114,70 @@
                     <td>{{data.employeeSalary}}</td>
                     <td>{{data.employeeCompany}}</td>
                     <td>{{data.employeeLivingCity}}</td>
-                    <td>{{data.employeeNationality}}</td>
+                    <td class="fit">{{data.employeeNationality}}</td>
                     <td><button class="btn" (click)="deleteRecord(data)">delete</button></td>
                     <td><button class="btn" (click)="updateRecordClick(data)">Update</button></td>
                 </tr>
             </tbody>
         </table>
     </div>
+    <!-- <div *ngIf="content_condition; then content else other_content">
+
+    </div> -->
+
+    <!-- <ng-template #content>content here...</ng-template>
+    <ng-template #other_content>other content here...</ng-template>
+
+    <ng-template [ngIf]="content_condition" [ngIfElse]="elseBlock">Nitin</ng-template>
+    <ng-template #elseBlock>Rahul</ng-template>-->
+
+    <!-- <ng-template [ngIf]="content_condition" [ngIfThen]="thenblock">Vishal</ng-template>
+    <ng-template #thenblock>Dipak</ng-template>  -->
+  <!-- <ng-template [ngIf]="content_condition" [ngIfThen]="content" [ngIfElse]="elseContent">DATA</ng-template>
+  <ng-template #content>then Bolck</ng-template>
+  <ng-template #elseContent>else Block</ng-template> -->
+<div [hidden]="content_condition">
+    <ng-container *ngFor="let student of students">
+       {{student | json}}
+       <br>
+    </ng-container>
 </div>
+<!-- 
+<div>
+    <h4 [style.color]="content_condition ? 'red' : 'green'">Nitin</h4>
+</div>
+
+<div>
+    <h4 [class.tempClass]="content_condition">Rahul</h4>
+</div>
+<div>
+    <h4 [appChangeColor]="true">Sumit</h4>
+</div> -->
+
+<!-- <input #myname (input)="updateMyName(myname.value)">
+<p>My Name : {{myName}}</p>
+
+<div *ngIf="let item of testData | keyvalue">
+   <h5>Key : {{item}}</h5>
+</div> -->
+<!-- <div style="width: 100px; height: 800px;background-color: aquamarine;"></div>
+<div style="width: 100px; height: 800px;background-color: antiquewhite;"></div>-->
+<!-- <div>
+    <a routerLink="extra" [routerLinkActive]="['is-active']">Go To Next Page...</a>
+</div>  -->
+<!-- <input type="text" (keyup)="pressKeyUpEvent()" (keydown)="keyDownEvent()"> -->
+
+<!-- <ul>
+    <li  #productsData *ngFor="let d of products">
+        {{d.id}} - {{d.name}}
+    </li>
+</ul> -->
+<!-- <ul>
+    <li *ngFor="let d of products | myFilterPipe">
+        {{d.id}} - {{d.name}}
+    </li>
+</ul> -->
+<!-- <button (click)="templateVariable(productsData)">Button</button> -->
+<!-- </div> -->
+<!-- <input type="checkbox" [(ngModel)]="isChecked" (change)="onCheckBoxChange()"> -->
+<!-- <div [innerHTML]="myLink"></div> -->

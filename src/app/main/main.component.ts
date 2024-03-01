@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Employee, EmployeeService, InputEmployee } from '../service/employee.service';
-import { from,Observable } from 'rxjs';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Employee, EmployeeService, InputEmployee, student } from '../service/employee.service';
 
 @Component({
   selector: 'app-main',
@@ -19,6 +18,36 @@ export class MainComponent implements OnInit {
   showSave:boolean = true
   inputEmpolyee:InputEmployee = new InputEmployee();
 
+  content_condition:boolean = true;
+  students:student[] = [];
+  num1:number=1;
+  num2:number=1;
+  myName:string = "Nitin"
+
+  testData = {
+      'key1': [{'key11':'value11'}, {'key12':'value12'}],
+      'key2': [{'key21':'value21'}, {'key22':'value22'}],
+    }
+
+    products = [
+      { id: 1, name: 'Product 1' },
+      { id: 2, name: 'Product 2' },
+      { id: 3, name: 'Product 3' },
+      { id: 4, name: 'Product 4' },
+      { id: 5, name: 'Product 5' },
+      { id: 6, name: 'Product 6' },
+      { id: 7, name: 'Product 7' },
+      { id: 8, name: 'Product 8' },
+      { id: 9, name: 'Product 9' },
+      { id: 10, name: 'Product 10' }
+    ];
+
+    @ViewChild('productsData') productsData!: ElementRef;
+
+    isChecked:boolean = false
+
+    myLink:string = '<h4>Nitin Jogdand</h4>';
+
   constructor(private employeeService:EmployeeService) { }
 
   ngOnInit(): void {
@@ -27,6 +56,8 @@ export class MainComponent implements OnInit {
     // data.subscribe((result)=>{
     //   (next())
     // })
+
+    this.students = this.employeeService.getAllStudents();
     
   }
 
@@ -124,6 +155,33 @@ export class MainComponent implements OnInit {
     this.employees = [];
     this.forUpdate = false
     this.addRecord=false
+  }
+
+  updateMyName(value:string){
+    console.log(value)
+    if(value == ''){
+      this.myName = "Nitin";
+    }else{
+      this.myName = value
+    }
+    
+  }
+
+  pressKeyUpEvent(){
+    console.log("Key up event")
+  }
+
+  keyDownEvent(){
+    console.log("key down event")
+  }
+
+  templateVariable(data:any){
+    console.log(data.nativeElement.value)
+  }
+
+  onCheckBoxChange(){
+    console.log('Checkbox state changed. New state:', this.isChecked);
+
   }
 
 }
