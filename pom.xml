@@ -5,7 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- The Basics -->
-    <artifactId>employee_frontend</artifactId>
+    <groupId>employee_frontend</groupId>
+    <artifactId>newProject</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
     <!-- Build Settings -->
