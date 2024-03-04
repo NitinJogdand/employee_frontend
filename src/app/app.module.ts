@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,13 +18,15 @@ import { MyFilterPipePipe } from './pipe/my-filter-pipe.pipe';
     ChangeColorDirective,
     ExtraComponent,
     MyFilterPipePipe,
+  
     
   ],
   imports: [
-    BrowserModule,
+   
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
