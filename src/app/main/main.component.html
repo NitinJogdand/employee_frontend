@@ -181,3 +181,49 @@
 <!-- </div> -->
 <!-- <input type="checkbox" [(ngModel)]="isChecked" (change)="onCheckBoxChange()"> -->
 <!-- <div [innerHTML]="myLink"></div> -->
+
+<!-- <p-autoComplete [(ngModel)]="selectedItem" [suggestions]="suggestions" (completeMethod)="search($event)"></p-autoComplete> -->
+<!-- "primeng": "^14.2.2", -->
+
+<!-- <div class="card flex justify-content-center">
+    <p-autoComplete [(ngModel)]="selectedItem" [suggestions]="suggestions" (completeMethod)="search($event)"></p-autoComplete>
+</div> -->
+<!-- <textarea class="form-control" rows="8" [(ngModel)]="textFroSpeech"></textarea>
+<br>
+<button class="btn btn-dark" (click)="callOnButton()"><i class="bi bi-mic"></i></button>
+<br>
+<br> -->
+
+<!-- <textarea class="form-control" rows="8" [(ngModel)]="outputText"></textarea>
+<br>
+<button *ngIf="!isRecord"  style="margin-right: 20px;" class="btn btn-success" (click)="startRecognition()"><i class="bi bi-play"></i></button>
+<button *ngIf="isRecord" style="margin-right: 20px;" class="btn btn-danger" (click)="stopRecognition()"><i class="bi bi-stop"></i></button>
+<button *ngIf="outputText" class="btn btn-dark" (click)="callOnButton()"><i class="bi bi-volume-up"></i></button> -->
+
+ <!-- <div>
+    <p>{{ transcript }}</p>
+    <button (click)="startRecognition()">Start Recognition</button>
+    <button (click)="stopRecognition()">Stop Recognition</button>
+  </div> -->
+
+  <!-- <div>
+    <button (click)="toggleRecognition()">{{ speech ? 'Stop Recognition' : 'Start Recognition' }}</button>
+  </div>
+  <div>
+    <p>{{ transcript }}</p>
+  </div> -->
+<div style="margin-top: 100px;">
+    
+<textarea class="form-control" rows="8" [(ngModel)]="resultString"></textarea>
+<button class="btn btn-success mt-3 ml-3" (click)="justWorking()"><i class="bi bi-play"></i></button>
+<button class="btn btn-dark mt-3" style="margin-left: 20px;" (click)="callOnButton()"><i class="bi bi-volume-up"></i></button> 
+
+</div>
+
+<!-- <textarea
+  class="textarea"
+  [waTextToSpeech]="text | waUtterance: options"
+  [waTextToSpeechPaused]="paused"
+  [(ngModel)]="text"
+  (waTextToSpeechEnd)="onEnd()"
+></textarea> -->

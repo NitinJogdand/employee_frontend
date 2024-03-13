@@ -1,0 +1,53 @@
+<!-- voice-to-text.component.html -->
+<!-- <div>
+    <button (click)="startRecognition()" >Click</button>
+  </div>
+  <div>
+    <p>{{ resultString }}</p>
+  </div> -->
+  
+  <!-- <textarea
+  class="textarea"
+  [waTextToSpeech]="text"
+  [(ngModel)]="text"
+></textarea> -->
+
+<!-- <div>
+  <h4 style="color: {{item.color}}">Good Morning</h4>
+</div> -->
+
+<div>
+  <h4 ng-style="{'background-color':item.color}">Good Morning</h4>
+</div>
+<button (click)="onClick()">Check</button>
+<button (click)="getAllTheData()">GetData</button>
+<br>
+<br>
+<div style="width: 90%;">
+  <table class="table table-bordered" style="width: 80%;">
+      <thead >
+          <tr>
+              <th>EmployeeName</th>
+              <th>EmployeeAge</th>
+              <th>EmployeeMob.</th>
+              <th>EmployeeSalary</th>
+              <th>EmployeeCompany</th>
+              <th>EmployeeLCity</th>
+              <th class="fit">EmployeeNat.</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let data of datas">
+           
+              <td>{{data.employeeName}}</td>
+              <td>{{data.employeeAge}}</td>
+              <td>{{data.employeeMobailNumber}}</td>
+              <td>{{data.employeeSalary}}</td>
+              <td>{{data.employeeCompany}}</td>
+              <td>{{data.employeeLivingCity}}</td>
+              <td class="fit">{{data.employeeNationality}}</td>
+            
+          </tr>
+      </tbody>
+  </table>
+</div>

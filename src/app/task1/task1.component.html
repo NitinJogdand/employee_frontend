@@ -1,0 +1,8 @@
+<!-- <button (click)="startRecording()">Click</button> -->
+
+<!-- voice-to-text.component.html -->
+<!-- voice-to-text.component.html -->
+<div *ngIf="isRecording">Recording...</div>
+<audio *ngIf="recordedData" [src]="recordedData" controls></audio>
+<button (click)="startRecording()" [disabled]="isRecording">Start Recording</button>
+<button (click)="stopRecording()" [disabled]="!isRecording">Stop Recording</button>

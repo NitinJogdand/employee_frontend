@@ -1,5 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Employee, EmployeeService, InputEmployee, student } from '../service/employee.service';
+import { SpeechRecognitionService } from '@ng-web-apis/speech';
+// import SpeechRecognition from 'web-speech-api';
+
+declare var webkitSpeechRecognition: any;
 
 @Component({
   selector: 'app-main',
@@ -7,9 +11,8 @@ import { Employee, EmployeeService, InputEmployee, student } from '../service/em
   styleUrls: ['./main.component.scss']
 })
 
-
 export class MainComponent implements OnInit {
-
+  isRecord:boolean = false
   employees:any[]=[];
   showTable:boolean = false;
   addRecord:boolean = false;
@@ -23,10 +26,11 @@ export class MainComponent implements OnInit {
   num1:number=1;
   num2:number=1;
   myName:string = "Nitin"
-
+  selectedItem:string = ''
+  suggestions:string[] = ["prathamesh","nitin","vishal","nikhil","rahul","ravi","vinayak","shiva"]
   testData = {
       'key1': [{'key11':'value11'}, {'key12':'value12'}],
-      'key2': [{'key21':'value21'}, {'key22':'value22'}],
+      'key2': [{'key21':'value21'}, {'key22':'value22'}],     
     }
 
     products = [
@@ -47,9 +51,36 @@ export class MainComponent implements OnInit {
     isChecked:boolean = false
 
     myLink:string = '<h4>Nitin Jogdand</h4>';
+    
+    outputText:string = ''
+    recognition:any;
 
-  constructor(private employeeService:EmployeeService) { }
 
+  constructor(private employeeService:EmployeeService) {
+
+    this.recognition = new webkitSpeechRecognition();
+    this.recognition.continuous = true;
+    this.recognition.lang = 'en-US';
+    this.recognition.interimResults = false;
+    this.recognition.addEventListener('result', (e: any) => {
+            const transcriptArray = Array.from(e.results      )
+              .map((result: any) => result[0])
+              .map((result: any) => result.transcript);
+              console.log("Data")
+              console.log(e)
+            this.outputText = transcriptArray.join(' ');
+            
+          });
+    // this.recognition.onresult = (event: any) => {
+    //   const transcript = event.results[event.results.length - 1][0].transcript;
+    //   this.outputText += transcript;
+    // };
+    
+   }
+
+  //  speech:boolean = true;
+  //  recognition1: any;
+  //  transcript = '';
   ngOnInit(): void {
 
     // const data = from(fetch("http://localhost:8081/employee/employee/getAll"))
@@ -58,12 +89,143 @@ export class MainComponent implements OnInit {
     // })
 
     this.students = this.employeeService.getAllStudents();
-    
+    // this.initializeSpeechRecognition();
+
   }
 
+  text:string=''
+  paused:boolean=false
+  options:any;
+  onEnd(){
+
+  }
+
+ resultString:string = ''
+  justWorking(){
+    var speech = true;
+    const recognition = new webkitSpeechRecognition();
+    // const recognition = new SpeechRecognition();
+
+    recognition.interimResults = true;
+    recognition.addEventListener('result', (e: any) => {
+      const transcriptArray = Array.from(e.results      )
+        .map((result: any) => result[0])
+        .map((result: any) => result.transcript);
+        console.log("Data")
+        console.log(e)
+       this.resultString = transcriptArray.join(' ');
+      
+    });
+
+    if(speech == true){
+      recognition.start();
+    }
+    // recognition.addEventListener('end', () => {
+    //   if (speech) {
+    //     recognition.start();
+    //   }
+    // });
+  }
+
+  // initializeSpeechRecognition(): void {
+  //   if ('SpeechRecognition' in window) {
+  //     const SpeechRecognition = (window as any).webkitSpeechRecognition;
+  //     this.recognition1 = new SpeechRecognition();
+  //     this.recognition1.interimResults = true;
+  
+  //     this.recognition1.addEventListener('result', (e: any) => {
+  //       const transcriptArray = Array.from(e.results)
+  //         .map((result: any) => result[0])
+  //         .map((result: any) => result.transcript);
+  
+  //       this.transcript = transcriptArray.join(' ');
+  //     });     
+  //   } else {
+  //     console.log('Speech recognition not supported');
+  //   }
+  // }
+
+  // startRecognition1(): void {
+  //   if (this.recognition1) {
+  //     this.recognition1.start();
+  //   } else {
+  //     console.log('Speech recognition not initialized');
+  //   }
+  // }
+
+  // stopRecognition1(): void {
+  //   if (this.recognition1) {
+  //     this.recognition1.stop();
+  //   } else {
+  //     console.log('Speech recognition not initialized');
+  //   }
+  // }
+
+  // speech(){
+  //   var speech = true;
+  //   window.SpeechRecognition = window.webkitSpeechRecognition;
+  //   const recognition = new SpeechRecognition();
+  //   recognition.interimResults = true;
+
+  //   recognition.addEventListner('result',e=>{
+  //     const transcript = Array.from(e.results).map(result => result[0]).map(result => result.transcript)
+  //     conver_text.innerHTML = transcript;
+  //   })
+
+  //   if(speech == true){
+  //     recognition.start();
+  //   }
+  // }
+  // speech = true;
+  // recognition1: any;
+  // transcript: string = '';
+
+  // initializeSpeechRecognition(): void {
+  //   if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+  //     const SpeechRecognition = (window as any).webkitSpeechRecognition;
+  //     this.recognition1 = new SpeechRecognition();
+  //     this.recognition1.interimResults = true;
+
+  //     this.recognition1.addEventListener('result', (e: any) => {
+  //       const transcriptArray = Array.from(e.results)
+  //         .map((result: any) => result[0])
+  //         .map((result: any) => result.transcript);
+          
+  //       this.transcript = transcriptArray.join(' ');
+  //     });
+
+  //   } else {
+  //     console.log('Speech recognition not supported');
+  //   }
+  // }
+
+  // toggleRecognition(){
+  //   this.initializeSpeechRecognition();
+  //   this.recognition1.start();
+  // }
+ 
+  
+  startRecognition() {
+    this.isRecord = true
+    // this.outputText = ''
+    this.recognition.start();
+  }
+
+  stopRecognition() {
+    this.isRecord = false
+    this.recognition.stop();
+  }
+
+  textFroSpeech:string = ''
+  callOnButton(){
+    // const text:string = this.textFroSpeech;
+    const text:string = this.resultString;
+    const utterance = new SpeechSynthesisUtterance(text);
+    window.speechSynthesis.speak(utterance)
+  }
   onShowAll(){
     this.employeeService.getAllEmployeeList().subscribe((result)=>{
-      this.employees = result;
+      this.employees = result;     
       console.log(this.employees)
     },(error)=>{
       console.log("Something went wrong..")
@@ -182,6 +344,11 @@ export class MainComponent implements OnInit {
   onCheckBoxChange(){
     console.log('Checkbox state changed. New state:', this.isChecked);
 
+  }
+
+  search(event:any){
+   console.log(event)
+   this.suggestions = this.suggestions.map(item => item);
   }
 
 }

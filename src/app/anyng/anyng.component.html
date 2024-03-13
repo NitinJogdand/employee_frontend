@@ -1,0 +1,10 @@
+<button (click)="startRecognition()" [disabled]="recognitionActive">Start Recognition</button>
+<button (click)="stopRecognition()" [disabled]="!recognitionActive">Stop Recognition</button>
+<p *ngIf="recognizedText">Recognized Text: {{ recognizedText }}</p>
+
+<button (click)="start()">clicl</button>
+<button (click)="speak()">speak</button>
+
+<!-- voice-to-text.component.html -->
+<!-- <button (click)="startListening111()">Start Listening</button>
+<button (click)="stopListening111()">Stop Listening</button> -->

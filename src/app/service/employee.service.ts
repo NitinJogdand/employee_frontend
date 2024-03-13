@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -12,20 +12,33 @@ export class EmployeeService {
   constructor(private http:HttpClient) { }
 
   getAllEmployeeList(){
-    return this.http.get<any>(`${this.tomcatPath}employee/getAll`);
+    return this.http.get<any>(`${this.developmentPath}employee/getAll`);
   }
 
   saveEmployee(inputEmployee:InputEmployee){
-    return this.http.post(`${this.tomcatPath}employee/save`,inputEmployee)
+    return this.http.post(`${this.developmentPath}employee/save`,inputEmployee)
   }
 
   deleteRecord(id:number){
-    return this.http.delete(`${this.tomcatPath}employee/deleteEmployee/${id}`)
+    return this.http.delete(`${this.developmentPath}employee/deleteEmployee/${id}`)
   }
 
   updateEmployee(employee:any){
     console.log("In API")
-    return this.http.put(`${this.tomcatPath}employee/update`,employee)
+    return this.http.put(`${this.developmentPath}employee/update`,employee)
+  }
+
+  getAllTheDataResponseEntity(){
+    return this.http.get(`${this.developmentPath}employee/getAllData`)
+  }
+
+  getDataUsingParames(){
+    let names = ['Nitin','Prathamesh','vishal','pooja']
+    let param = new HttpParams();
+    for(let i=0;i<names.length-1;i++){
+     param= param.append('names',names[i])
+    }
+     return this.http.get(`${this.developmentPath}employee/getThedata`,{params:param})
   }
 
   getAllStudents(){
@@ -82,4 +95,6 @@ export class student{
     this.lastName = lastName;
     this.age = age;
   }
+
+
 }
